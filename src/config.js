@@ -25,42 +25,16 @@ export const DeployConfigSchema = z.object({
   })),
 });
 
-export type DeployConfig = z.infer<typeof DeployConfigSchema>;
-
 // Agent registry - all deployable agents
 export const agents = [
-  {
-    name: 'edna',
-    repo: 'edna-ghl-agent',
-    vercelProjectId: '',
-    autoDeploy: true,
-    branches: ['main'],
-  },
-  {
-    name: 'mabel',
-    repo: 'mabel-lead-agent',
-    vercelProjectId: '',
-    autoDeploy: true,
-    branches: ['main'],
-  },
-  {
-    name: 'otis',
-    repo: 'otis-seo-agent',
-    vercelProjectId: '',
-    autoDeploy: true,
-    branches: ['main'],
-  },
-  {
-    name: 'harold',
-    repo: 'harold-finance-agent',
-    vercelProjectId: '',
-    autoDeploy: true,
-    branches: ['main'],
-  },
+  { name: 'edna', repo: 'edna-ghl-agent', vercelProjectId: '', autoDeploy: true, branches: ['main'] },
+  { name: 'mabel', repo: 'mabel-lead-agent', vercelProjectId: '', autoDeploy: true, branches: ['main'] },
+  { name: 'otis', repo: 'otis-seo-agent', vercelProjectId: '', autoDeploy: true, branches: ['main'] },
+  { name: 'harold', repo: 'harold-finance-agent', vercelProjectId: '', autoDeploy: true, branches: ['main'] },
 ];
 
-export function getConfig(): DeployConfig {
-  return DeployConfigSchema.parse({
+export function getConfig() {
+  return {
     vercel: {
       token: process.env.VERCEL_TOKEN,
       teamId: process.env.VERCEL_TEAM_ID,
@@ -77,5 +51,5 @@ export function getConfig(): DeployConfig {
       port: parseInt(process.env.PORT || '3000'),
     },
     agents,
-  });
+  };
 }
